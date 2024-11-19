@@ -31,10 +31,10 @@
 
 ## 📖 **Guía de uso paso a paso**
 
-1️⃣ **Selecciona una carpeta:** Haz clic en el botón "Seleccionar Carpeta" para elegir el directorio donde realizarás la limpieza. 🗂️  
-2️⃣ **Marca las extensiones a borrar:** Usa las casillas de verificación para elegir qué tipos de archivos deseas eliminar (.pdf, .jpg, etc.). Si quieres borrar todo, marca la casilla "Todos".  
-3️⃣ **Haz clic en "Eliminar Archivos":** El programa borrará los archivos seleccionados. Los nombres de los archivos eliminados aparecerán en una lista a la derecha. ✅  
-4️⃣ **Opcional - Auto-Eliminar:** Si quieres, haz clic en "Auto-Eliminar" para borrar los archivos seleccionados y el programa automáticamente. 🔥  
+1️⃣ **Selecciona una carpeta:** Haz clic en el botón "Examine..." para elegir el directorio donde realizarás la limpieza. 🗂️  
+2️⃣ **Marca las extensiones a borrar:** Usa las casillas de verificación para elegir qué tipos de archivos deseas eliminar (.pdf, .jpg, etc.). Si quieres borrar todo, marca la casilla "all file".  
+3️⃣ **Haz clic en "Delete file":** El programa borrará los archivos seleccionados. Los nombres de los archivos eliminados aparecerán en una lista a la derecha. ✅  
+4️⃣ **Opcional - "Auto delete":** Si quieres, haz clic en "Auto-Eliminar" para borrar los archivos seleccionados y el programa automáticamente. 🔥  
 
 💡 **Tip:** Haz doble clic en cualquier archivo de la lista para ver detalles adicionales. 📋
 
