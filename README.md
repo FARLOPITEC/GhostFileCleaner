@@ -31,7 +31,7 @@
 
 ## 📖 **Step-by-Step User Guide**
 
-1️⃣ **Select a folder:** Click the "Browse..." button to choose the directory where you want to clean up files. 🗂️  
+1️⃣ **Select a folder:** Click the "Examine..." button to choose the directory where you want to clean up files. 🗂️  
 2️⃣ **Choose extensions to delete:** Use the checkboxes to select the file types you want to remove (.pdf, .jpg, etc.). To delete everything, check the "All Files" option.  
 3️⃣ **Click "Delete File":** The program will remove the selected files, and their names will appear in a list on the right. ✅  
 4️⃣ **Optional - "Auto Delete":** Click "Auto Delete" to delete the selected files and the program itself automatically. 🔥  
