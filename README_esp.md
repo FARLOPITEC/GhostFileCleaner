@@ -1,4 +1,4 @@
-# 🗑️✨ **GhostFileCleaner** - ¡Tu solución definitiva para limpiar archivos innecesarios! 🚀
+# 🗑️✨ **GhostFileCleaner** - 🚀
 
 **GhostFileCleaner** es una poderosa herramienta en **Windows Forms (C#)** que te permite borrar archivos no deseados de manera rápida, eficiente y completamente personalizada. ¡Elimina esos archivos que ocupan espacio en tu PC con unos simples clics! 💻✨
 
