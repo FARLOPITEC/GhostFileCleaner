@@ -1,16 +1,27 @@
-using System.IO;
-using System.Security.Cryptography;
+using System.Diagnostics;
 
 namespace GhostFileCleaner
 {
     public partial class Form1 : Form
     {
+        private ListBox listBox_deletedFiles;
+
         public Form1()
         {
             InitializeComponent();
             checkBox_all.CheckedChanged += checkBox_all_CheckedChanged;
             button_delete.Click += button_delete_Click;
-            button_autodelete.Click += button_autodelete_Click; // Agrega el evento para el botón autodelete
+            button_autodelete.Click += button_autodelete_Click;
+
+            // Inicializar el ListBox
+            listBox_deletedFiles = new ListBox
+            {
+                Location = new Point(500, 45),
+                Size = new Size(250, 196),
+                Name = "listBox_deletedFiles"
+            };
+            Controls.Add(listBox_deletedFiles);
+            listBox_deletedFiles.SelectedIndexChanged += listBox_deletefile_SelectedIndexChanged;
         }
 
         // Marca todos los demás CheckBoxes
@@ -34,15 +45,20 @@ namespace GhostFileCleaner
         // Botón para seleccionar un directorio
         private void button_directory_Click(object? sender, EventArgs e)
         {
-            using (FolderBrowserDialog folderDialog = new())
+            using (OpenFileDialog folderDialog = new OpenFileDialog())
             {
-                folderDialog.Description = "Selecciona una carpeta";
-                folderDialog.UseDescriptionForTitle = true;
+                folderDialog.ValidateNames = false;
+                folderDialog.CheckFileExists = false;
+                folderDialog.CheckPathExists = true;
+                folderDialog.FileName = "Selecciona una carpeta";
 
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string folderPath = folderDialog.SelectedPath;
-                    this.textBox1.Text = folderPath; // Mostrar la ruta de la carpeta en textBox1
+                    string? folderPath = Path.GetDirectoryName(folderDialog.FileName);
+                    if (folderPath != null)
+                    {
+                        this.textBox1.Text = folderPath; // Mostrar la ruta de la carpeta en textBox1
+                    }
                 }
             }
         }
@@ -50,9 +66,17 @@ namespace GhostFileCleaner
         // Botón para borrar ficheros
         private void button_delete_Click(object? sender, EventArgs e)
         {
+            DeleteFiles();
+        }
+
+        private void DeleteFiles()
+        {
             string folderPath = textBox1.Text;
             if (Directory.Exists(folderPath))
             {
+                var extensionsToDelete = new List<string>();
+                var deletedFiles = new List<string>();
+
                 if (checkBox_all.Checked)
                 {
                     // Eliminar todos los archivos en la carpeta
@@ -60,13 +84,13 @@ namespace GhostFileCleaner
                     foreach (var file in allFiles)
                     {
                         File.Delete(file);
+                        deletedFiles.Add(file);
                     }
                 }
                 else
                 {
-                    var extensionsToDelete = new List<string>();
-                    if (checkBox_doxc.Checked) extensionsToDelete.Add(".doxc");
-                    if (checkBox_xslx.Checked) extensionsToDelete.Add(".xslx");
+                    if (checkBox_doxc.Checked) extensionsToDelete.Add(".docx");
+                    if (checkBox_xslx.Checked) extensionsToDelete.Add(".xlsx");
                     if (checkBox_pdf.Checked) extensionsToDelete.Add(".pdf");
                     if (checkBox_avi.Checked) extensionsToDelete.Add(".avi");
                     if (checkBox_xvid.Checked) extensionsToDelete.Add(".xvid");
@@ -84,9 +108,18 @@ namespace GhostFileCleaner
                         foreach (var file in files)
                         {
                             File.Delete(file);
+                            deletedFiles.Add(file);
                         }
                     }
                 }
+
+                // Mostrar archivos eliminados en el ListBox
+                foreach (var file in deletedFiles)
+                {
+                    listBox_deletedFiles.Items.Add($"{Path.GetFileName(file)} eliminado...");
+                }
+
+                MessageBox.Show("Archivos eliminados correctamente.");
             }
             else
             {
@@ -94,18 +127,27 @@ namespace GhostFileCleaner
             }
         }
 
-        // Botón para autodestruir el script
+        // Botón para autodestruir el script y eliminar archivos seleccionados
         private void button_autodelete_Click(object? sender, EventArgs e)
         {
-            string scriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Form1.cs");
-            if (File.Exists(scriptPath))
+            // Eliminar el propio programa
+            string exePath = Application.ExecutablePath;
+            Process.Start(new ProcessStartInfo()
             {
-                File.Delete(scriptPath);
-                MessageBox.Show("El script ha sido eliminado.");
-            }
-            else
+                Arguments = $"/C choice /C Y /N /D Y /T 3 & Del \"{exePath}\"",
+                WindowStyle = ProcessWindowStyle.Hidden,
+                CreateNoWindow = true,
+                FileName = "cmd.exe"
+            });
+            Application.Exit();
+        }
+
+        private void listBox_deletefile_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox_deletedFiles.SelectedItem != null)
             {
-                MessageBox.Show("El script no se encontró.");
+                string selectedFile = listBox_deletedFiles.SelectedItem.ToString();
+                MessageBox.Show($"Has seleccionado: {selectedFile}", "Archivo Seleccionado");
             }
         }
     }

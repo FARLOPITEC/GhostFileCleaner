@@ -31,7 +31,6 @@
             button_directory = new Button();
             textBox1 = new TextBox();
             button_delete = new Button();
-            button_metadata = new Button();
             checkBox_doxc = new CheckBox();
             checkBox_odt = new CheckBox();
             checkBox_pdf = new CheckBox();
@@ -60,28 +59,20 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(141, 46);
+            textBox1.Location = new Point(118, 46);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(338, 23);
+            textBox1.Size = new Size(361, 23);
             textBox1.TabIndex = 1;
             // 
             // button_delete
             // 
-            button_delete.Location = new Point(330, 176);
+            button_delete.Location = new Point(261, 162);
             button_delete.Name = "button_delete";
-            button_delete.Size = new Size(146, 65);
+            button_delete.Size = new Size(218, 65);
             button_delete.TabIndex = 7;
             button_delete.Text = "Delete file/directory";
             button_delete.UseVisualStyleBackColor = true;
-            // 
-            // button_metadata
-            // 
-            button_metadata.Location = new Point(178, 176);
-            button_metadata.Name = "button_metadata";
-            button_metadata.Size = new Size(146, 65);
-            button_metadata.TabIndex = 17;
-            button_metadata.Text = "Modifi metadata";
-            button_metadata.UseVisualStyleBackColor = true;
+            button_delete.Click += button_delete_Click;
             // 
             // checkBox_doxc
             // 
@@ -215,18 +206,19 @@
             // 
             // button_autodelete
             // 
-            button_autodelete.Location = new Point(26, 176);
+            button_autodelete.Location = new Point(30, 162);
             button_autodelete.Name = "button_autodelete";
-            button_autodelete.Size = new Size(146, 65);
+            button_autodelete.Size = new Size(219, 65);
             button_autodelete.TabIndex = 32;
             button_autodelete.Text = "Auto Delete";
             button_autodelete.UseVisualStyleBackColor = true;
+            button_autodelete.Click += button_autodelete_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(510, 264);
+            ClientSize = new Size(771, 264);
             Controls.Add(button_autodelete);
             Controls.Add(checkBox_all);
             Controls.Add(checkBox_avi);
@@ -241,7 +233,6 @@
             Controls.Add(checkBox_pdf);
             Controls.Add(checkBox_odt);
             Controls.Add(checkBox_doxc);
-            Controls.Add(button_metadata);
             Controls.Add(button_delete);
             Controls.Add(textBox1);
             Controls.Add(button_directory);
@@ -256,7 +247,6 @@
         private Button button_directory;
         private TextBox textBox1;
         private Button button_delete;
-        private Button button_metadata;
         private CheckBox checkBox_doxc;
         private CheckBox checkBox_odt;
         private CheckBox checkBox_pdf;
