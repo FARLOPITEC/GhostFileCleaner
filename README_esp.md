@@ -61,9 +61,6 @@
 ## 📝 **Licencia**
 
 Este proyecto está distribuido bajo la [MIT License](LICENSE).  
-### Permisos:  
-- ✅ Uso personal y comercial.  
-- ✅ Modificación y redistribución.  
 
 ### Limitaciones:   
 - ❌ El autor no se responsabiliza de daños.  
